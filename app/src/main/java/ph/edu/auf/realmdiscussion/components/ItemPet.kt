@@ -23,7 +23,7 @@ import ph.edu.auf.realmdiscussion.database.realmodel.PetModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ItemPet(petModel: PetModel, onRemove: (PetModel) -> Unit){
+fun ItemPet(petModel: PetModel, onRemove: (PetModel) -> Unit, onClick: () -> Unit){
 
     val currentItem by rememberUpdatedState(petModel)
 

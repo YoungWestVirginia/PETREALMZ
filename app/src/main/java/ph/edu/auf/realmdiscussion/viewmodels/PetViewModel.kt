@@ -2,6 +2,7 @@ package ph.edu.auf.realmdiscussion.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.realm.kotlin.MutableRealm
 import io.realm.kotlin.ext.query
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ph.edu.auf.realmdiscussion.database.RealmHelper
 import ph.edu.auf.realmdiscussion.database.realmodel.PetModel
+
 
 class PetViewModel : ViewModel() {
 
@@ -51,5 +53,16 @@ class PetViewModel : ViewModel() {
             _showSnackbar.emit("Removed ${model.name}")
         }
     }
+    fun addPet(newPet: PetModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val realm = RealmHelper.getRealmInstance()
+            realm.write {
+                val pet = copyToRealm(newPet) // Add the new pet to the database
+            }
+            _pets.update { it + newPet } // Update the in-memory list of pets
+            _showSnackbar.emit("Added ${newPet.name}") // Show a snackbar message
+        }
+    }
+
 
 }

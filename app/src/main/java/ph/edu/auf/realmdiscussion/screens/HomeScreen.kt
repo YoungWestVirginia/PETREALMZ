@@ -24,23 +24,23 @@ fun HomeScreen(navController: NavController){
         modifier = Modifier.fillMaxSize())
     {
         Text(
-           text = "Pet Realm Sampler",
+           text = "PETREALMZ.IO",
             style = TextStyle(
                 fontWeight = FontWeight.Bold,
-                fontSize = 24.sp
+                fontSize = 30.sp
             )
         )
         Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = {navController.navigate(AppNavRoutes.PetList.route)}
         ) {
-            Text("Pet list")
+            Text("PETLIST.IO")
         }
         Spacer(modifier = Modifier.height(8.dp))
         Button(
             onClick = {navController.navigate(AppNavRoutes.OwnerList.route)}
         ) {
-            Text("Owner list")
+            Text("OWNERS.IO")
         }
     }
 }
